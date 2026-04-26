@@ -1,0 +1,40 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>TrustVerify | Academic Credentials</title>
+    <link rel="stylesheet" href="css/style.css">
+</head>
+<body>
+
+    <div class="container">
+        <div class="card">
+            <h2>University Admin Panel</h2>
+            <p>Issue a new document to the blockchain-simulated registry.</p>
+            
+            <div class="file-upload" id="dropZone">
+    <div style="font-size: 40px; color: #3498db; margin-bottom: 10px;">📄📁</div>
+    <h3 style="margin-bottom: 5px; color: #2c3e50;">Drag and drop documents here</h3>
+    <p style="color: #7f8c8d; font-size: 14px; margin-bottom: 15px;">Supports individual files or entire batch folders</p>
+    
+    <input type="file" id="issueFile" multiple style="display: none;" onchange="updateUIText(this)">
+    <input type="file" id="issueFolder" webkitdirectory directory multiple style="display: none;" onchange="updateUIText(this)">
+    
+    <div>
+        <button type="button" class="browse-btn" onclick="document.getElementById('issueFile').click()">Browse Files</button>
+        <span style="margin: 0 10px; color: #bdc3c7;">or</span>
+        <button type="button" class="browse-btn secondary" onclick="document.getElementById('issueFolder').click()">Browse Folder</button>
+    </div>
+    
+    <p id="selectionText" style="margin-top: 15px; font-weight: bold; color: #27ae60;"></p>
+</div>
+            
+            <button class="admin-btn" onclick="issueDocument()">Register Document</button>
+            <div id="issueResult" class="result"></div>
+        </div>
+    </div>
+
+    <script src="app.js"></script>
+</body>
+</html>

@@ -1,0 +1,174 @@
+/* =========================================
+   GLOBAL STYLES
+========================================= */
+body { 
+    font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif; 
+    background-color: #f4f7f6; 
+    color: #333; 
+    padding: 50px; 
+}
+
+.container { 
+    width: 100%; 
+    max-width: 800px; 
+    margin: auto; 
+}
+
+.card { 
+    background: white; 
+    padding: 30px; 
+    border-radius: 10px; 
+    box-shadow: 0 4px 6px rgba(0,0,0,0.1); 
+    margin-bottom: 30px; 
+}
+
+h2 { 
+    margin-top: 0; 
+    color: #2c3e50; 
+}
+
+/* =========================================
+   UPLOAD PORTAL STYLES
+========================================= */
+.file-upload { 
+    border: 2px dashed #bdc3c7; 
+    padding: 20px; 
+    text-align: center; 
+    border-radius: 5px; 
+    margin-bottom: 20px; 
+    background: #fafafa; 
+}
+
+input[type="file"] { 
+    margin-top: 10px; 
+}
+
+/* =========================================
+   STANDARD BUTTON STYLES
+========================================= */
+button { 
+    background-color: #3498db; 
+    color: white; 
+    border: none; 
+    padding: 10px 20px; 
+    border-radius: 5px; 
+    cursor: pointer; 
+    font-weight: bold; 
+    width: 100%; 
+    font-size: 16px; 
+    margin-bottom: 10px;
+}
+
+button:hover { 
+    background-color: #2980b9; 
+}
+
+.admin-btn { 
+    background-color: #95a5a6; 
+}
+
+.admin-btn:hover { 
+    background-color: #7f8c8d; 
+}
+
+#downloadBtn { 
+    background-color: #27ae60; 
+    display: none; 
+}
+
+/* =========================================
+   MODERN BROWSE BUTTONS (DROPZONE)
+========================================= */
+.browse-btn { 
+    background-color: transparent; 
+    color: #3498db; 
+    border: 2px solid #3498db; 
+    padding: 8px 15px; 
+    border-radius: 5px; 
+    cursor: pointer; 
+    font-weight: bold; 
+    width: auto; 
+    display: inline-block; 
+}
+
+.browse-btn:hover { 
+    background-color: #e8f4f8; 
+    color: #2980b9; 
+}
+
+.browse-btn.secondary { 
+    color: #95a5a6; 
+    border-color: #bdc3c7; 
+}
+
+.browse-btn.secondary:hover { 
+    background-color: #f8f9f9; 
+    color: #7f8c8d; 
+}
+
+/* =========================================
+   STATUS AND RESULT MESSAGES
+========================================= */
+.result { 
+    margin-top: 20px; 
+    padding: 15px; 
+    border-radius: 5px; 
+    text-align: center; 
+    font-weight: bold; 
+    display: none;
+}
+
+.success { 
+    background-color: #e8f8f5; 
+    color: #27ae60; 
+    border: 1px solid #27ae60; 
+    display: block;
+}
+
+.error { 
+    background-color: #fdedec; 
+    color: #c0392b; 
+    border: 1px solid #c0392b; 
+    display: block;
+}
+
+/* =========================================
+   VERIFICATION TABLE STYLES
+========================================= */
+table { 
+    width: 100%; 
+    border-collapse: collapse; 
+    margin-top: 20px; 
+    display: none; 
+}
+
+th, td { 
+    border: 1px solid #ddd; 
+    padding: 12px; 
+    text-align: left; 
+}
+
+th { 
+    background-color: #2c3e50; 
+    color: white; 
+}
+
+.Authentic { 
+    color: #27ae60; 
+    font-weight: bold; 
+}
+
+.Fraudulent { 
+    color: #c0392b; 
+    font-weight: bold; 
+}
+
+/* =========================================
+   PDF GENERATOR TRICK (PRINT MEDIA)
+========================================= */
+@media print {
+    body { background: white; padding: 0; }
+    .card { box-shadow: none; border: none; }
+    .file-upload, button, p { display: none !important; } /* Hides UI controls */
+    table { display: table !important; } /* Only prints the table */
+}

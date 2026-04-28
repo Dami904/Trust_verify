@@ -35,15 +35,14 @@ async function connectCloudDB() {
 }
 connectCloudDB();
 
-// Serves HTML/CSS files from the root directory
-app.use(express.static(__dirname));
+// Serves HTML/CSS files from the 'public' folder
+app.use(express.static(path.join(__dirname, 'public')));
 
 // --- FRONTEND ROUTES ---
 app.get('/', (req, res) => res.redirect('/verify'));
-app.get('/verify', (req, res) => res.sendFile(path.join(__dirname, 'index.html'))); // Ensure this points to your main page
-app.get('/admin', (req, res) => res.sendFile(path.join(__dirname, 'admin.html')));
-app.get('/history', (req, res) => res.sendFile(path.join(__dirname, 'history.html')));
-
+app.get('/verify', (req, res) => res.sendFile(path.join(__dirname, 'public', 'verify.html'))); 
+app.get('/admin', (req, res) => res.sendFile(path.join(__dirname, 'public', 'admin.html')));
+app.get('/history', (req, res) => res.sendFile(path.join(__dirname, 'public', 'history.html')));
 // ==========================================
 // ROUTE 1: ADMIN BATCH ISSUING (Writing to Cloud)
 // ==========================================

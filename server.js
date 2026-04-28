@@ -85,13 +85,35 @@ app.post('/api/verify', upload.array('documents', 5000), async (req, res) => {
         hashSum.update(file.buffer);
         const hexHash = hashSum.digest('hex');
 
-        // Query the Cloud Database: "Do you have a record with this exact hash?"
         const existingRecord = await documentDatabase.findOne({ documentHash: hexHash });
 
+        // --- NEW LOGIC STARTS HERE ---
+        // 1. Generate a unique ID for this specific verification event
+        const transactionId = crypto.randomBytes(4).toString('hex').toUpperCase();
+        const currentStatus = existingRecord ? "Verified" : "Tampered";
+
+        // 2. Save this event to your NEW collection
+        await db.collection('verification_history').insertOne({
+            transactionId: transactionId,
+            fileName: file.originalname,
+            hash: hexHash,
+            status: currentStatus,
+            timestamp: new Date()
+        });
+        // --- NEW LOGIC ENDS HERE ---
+
         if (existingRecord) {
-            verificationResults.push({ fileName: file.originalname, status: "Authentic" });
+            verificationResults.push({ 
+                fileName: file.originalname, 
+                status: "Authentic",
+                certificateId: transactionId // Useful for linking in the frontend
+            });
         } else {
-            verificationResults.push({ fileName: file.originalname, status: "Fraudulent" });
+            verificationResults.push({ 
+                fileName: file.originalname, 
+                status: "Fraudulent",
+                certificateId: transactionId 
+            });
         }
     }
 

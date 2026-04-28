@@ -1,0 +1,57 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>TrustVerify | Verification History</title>
+    <link rel="stylesheet" href="css/style.css"> 
+</head>
+<body>
+    <nav>
+   <a href="index.html">Home</a>
+   <a href="history.html">History & Certificates</a>
+</nav>
+    <div class="history-container">
+        <h1>📜 Verification History</h1>
+        <p>Global registry of all document integrity checks.</p>
+        
+        <table>
+            <thead>
+                <tr>
+                    <th>Date</th>
+                    <th>File Name</th>
+                    <th>Status</th>
+                    <th>Certificate</th>
+                </tr>
+            </thead>
+            <tbody id="history-body">
+                </tbody>
+        </table>
+    </div>
+
+    <script>
+        async function loadHistory() {
+            const response = await fetch('/api/history');
+            const data = await response.json();
+            const body = document.getElementById('history-body');
+
+            body.innerHTML = data.map(item => `
+                <tr>
+                    <td>${new Date(item.timestamp).toLocaleString()}</td>
+                    <td>${item.fileName}</td>
+                    <td class="${item.status === 'Verified' ? 'status-verified' : 'status-tampered'}">
+                        ${item.status}
+                    </td>
+                    <td>
+                        <a href="/download-certificate/${item.transactionId}" class="btn-dl">
+                            📥 Download PDF
+                        </a>
+                    </td>
+                </tr>
+            `).join('');
+        }
+
+        window.onload = loadHistory;
+    </script>
+</body>
+</html>
